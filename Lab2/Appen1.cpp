@@ -1,13 +1,21 @@
 //######################################################################################################################
 //# Burak Koryan | bkoryan@unb.ca | January 24 2019
 //# Lab notes for ECE 4333 - Robotics | Faculty of Engineering at University of New Brunswick,Fredericton,Canada.
-//# Laboratory Experiment 2 : Applications of Real Time Systems Concepts by Prof.Chris Diduch at UNB 
+//# Description: Laboratory Experiment 2 : Applications of Real Time Systems Concepts by Prof.Chris Diduch at UNB
+
 //######################################################################################################################
 
+/*
+Import libraries:
+-> mbed.h can be found at https://github.com/ARMmbed/mbed-os/blob/master/mbed.h
+-> rtos.h can be found at https://github.com/ARMmbed/mbed-os/blob/master/rtos/rtos.h
+*/
 #include "mbed.h"
 #include "rtos.h"
 
-// Function prototypes
+/*
+
+*/
 void WatchdogISR(void const *n);
 void WatchdogThread(void const *argument);
 
@@ -22,8 +30,8 @@ DigitalOut led1(LED1);
 Serial pc(USBTX, USBRX); // Pins (tx, rx) for PC serial channel
 
 //*********************************************************************************************************
-int main() 
-{ 
+int main()
+{
   char x;
 // Start execution of the thread: WatchdogThread with ID, WatchdogId:
   WatchdogId = osThreadCreate(osThread(WatchdogThread), NULL);
@@ -41,7 +49,7 @@ int main()
           Thread::wait(500); // Go to sleep for 500 ms
     }while(1);
 }
-// ******** Watchdog Thread ********
+
 void WatchdogThread(void const *argument)
 {
     while (true) {
@@ -51,8 +59,7 @@ void WatchdogThread(void const *argument)
 }
 
 //*********************************************************************************************************
-// ******** Watchdog Interrupt Handler ********
-void WatchdogISR(void const *n) 
+void WatchdogISR(void const *n)
 {
  osSignalSet(WatchdogId,0x1); // Send signal to thread with ID, WatchdogId, i.e., WatchdogThread.
 }
