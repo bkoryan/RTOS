@@ -125,5 +125,5 @@ More can be read at : https://www.keil.com/pack/doc/CMSIS/RTOS/html/group__CMSIS
 
 void WatchdogISR(void const *n)
 {
- osSignalSet(WatchdogId,0x1); // Send signal to thread with ID, WatchdogId, i.e., WatchdogThread.
+ osSignalSet(WatchdogId,0x1); // Send signal to thread with ID
 }
