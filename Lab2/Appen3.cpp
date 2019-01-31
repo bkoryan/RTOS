@@ -1,6 +1,6 @@
 
 /*
-Burak Koryan | bkoryan@unb.ca | January 24 2019
+Burak Koryan | bkoryan@unb.ca | January 31 2019
 Lab notes for ECE 4333 - Robotics | Faculty of Engineering at University of New Brunswick,Fredericton,Canada.
 Description: Laboratory Experiment 2 : Applications of Real Time Systems Concepts by Prof.Chris Diduch at UNB.
 Extra comments for learning purposes have been added by Burak.
@@ -235,8 +235,15 @@ void PeriodicThread(void const *argument) {
        Position = Position + 1;
     }
 }
-// ******** Period Timer Interrupt Handler ********
-void PeriodicISR(void) {
- osSignalSet(PeriodicId,0x1); // Send signal to the thread with ID, PeriodicId,
- // i.e., PeriodicThread.
+
+/*
+Periodic Interrupt service routine:
+Periodic : thread ID obtained by osThreadCreate or osThreadGetId.
+"0x1": specifies the signal flags of the thread that should be set.It can be 32-bit integer
+More can be read at : https://www.keil.com/pack/doc/CMSIS/RTOS/html/group__CMSIS__RTOS__SignalMgmt.html#ga3de2730654589d6c3559c4b9e2825553
+*/
+void PeriodicISR(void) 
+{
+ osSignalSet(PeriodicId,0x1);               // Send signal to the thread with ID, PeriodicId,
+
 }
