@@ -1,4 +1,5 @@
 
+
 /*
 Burak Koryan | bkoryan@unb.ca | January 24 2019
 Lab notes for ECE 4333 - Robotics | Faculty of Engineering at University of New Brunswick,Fredericton,Canada.
@@ -6,7 +7,16 @@ Description: Laboratory Experiment 2 : Applications of Real Time Systems Concept
 Extra comments for learning purposes have been added by Burak.
 
 Part 2 : Thread Triggered by a periodic interrupt from Appendix 2
+Code algorithm:
+1) Threads,I/Os,functions defined
+2) periodic interrupt is set to X seconds
+3) When X seconds is done,then periodicISR is called and periodicID signal set.
+4) PeriodicThread called,signalperiodic was set,LED3 toggled,and position variable incremented
+5) Position variable printed on terminal,threads wait 500 ms 
+6) if the key "r" is pressed then LED1 is turned on after Y seconds that is set in OneShot timer.
+
 */
+
 
 /*
 Import libraries:
